@@ -1,0 +1,136 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="../fontawesome-free-5.15.4-web/css/all.min.css">
+    <link rel="stylesheet" href="/output.css">
+    <title>Documentación - Sistema de Facturación</title>
+</head>
+<body class="font-cam">
+    <%- include('partials/header') %>
+    <%- include('partials/sidebar') %>
+
+    <main class="p-6 bg-whiteSmoke xl:ml-64 min-h-screen">
+        <!-- Título y búsqueda -->
+        <div class="flex flex-col md:flex-row justify-between mb-6">
+            <div>
+                <h1 class="text-3xl font-semibold text-gray2Pers">Docs</h1>
+                <p class="text-gray2Pers text-sm max-w-2xl mt-1">El objetivo es brindar información clara y organizada sobre el uso de las funciones del sistema, resolver dudas comunes y guiar a los usuarios en tareas específicas.</p>
+            </div>
+            <div class="mt-4 md:mt-0">
+                <input type="search" placeholder="Buscar..." class="w-full md:w-64 bg-gray-200 px-3 py-2 border border-grayPers rounded-md text-sm placeholder:text-gray-500 focus:outline-none focus:ring-2 focus:ring-aquaPers">
+            </div>
+        </div>
+
+        <!-- Introducción -->
+        <section class="bg-white p-6 rounded-lg shadow-sm mb-6">
+            <h2 class="text-2xl font-bold text-gray2Pers mb-4">Introducción al sistema</h2>
+            <p class="text-gray-700 text-[17px] leading-relaxed">
+                Bienvenido al sistema de facturación electrónica de Cash Admin. Este software está diseñado para simplificar y optimizar el proceso de generación, envío y almacenamiento de facturas electrónicas, cumpliendo con las normativas fiscales vigentes.
+            </p>
+        </section>
+
+        <!-- Qué es la facturación -->
+        <section class="bg-white p-6 rounded-lg shadow-sm mb-6">
+            <h2 class="text-2xl font-bold text-gray2Pers mb-4">¿Qué es la facturación electrónica?</h2>
+            <p class="text-gray-700 text-[17px] leading-relaxed">
+                La facturación electrónica es una solución digital que reemplaza las facturas en papel por documentos electrónicos con validez legal. Permite agilizar transacciones, reducir errores y cumplir con las disposiciones fiscales establecidas por los organismos reguladores.
+            </p>
+
+            <h2 class="text-2xl font-bold text-gray2Pers mt-6 mb-2">Propósito del Sistema</h2>
+            <p class="text-gray-700 text-[17px] leading-relaxed">
+                El sistema tiene como objetivo ofrecer a empresas y autónomos una herramienta eficiente para gestionar sus facturas de manera segura y rápida, garantizando una experiencia fluida en la emisión de comprobantes fiscales digitales.
+            </p>
+
+            <h2 class="text-2xl font-bold text-gray2Pers mt-6 mb-2">Características Principales:</h2>
+            <ul class="list-disc pl-6 text-gray-700 text-[17px] space-y-1">
+                <li><strong>Emisión de facturas en tiempo real:</strong> Genera y envía facturas electrónicas en cuestión de segundos.</li>
+                <li><strong>Cumplimiento fiscal:</strong> Adaptado a las normativas vigentes en tu región.</li>
+                <li><strong>Gestión de clientes y productos:</strong> Mantén un registro organizado de tus datos comerciales.</li>
+                <li><strong>Reportes detallados:</strong> Consulta información sobre tus ingresos, impuestos y más.</li>
+                <li><strong>Interfaz intuitiva:</strong> Fácil de usar para cualquier nivel de experiencia.</li>
+            </ul>
+        </section>
+
+        <!-- Preguntas frecuentes -->
+        <section class="bg-white p-6 rounded-lg shadow-sm mb-6">
+            <h2 class="text-2xl font-bold text-gray2Pers mb-4">Preguntas frecuentes</h2>
+            <div class="space-y-6">
+                <div>
+                    <h3 class="text-xl font-semibold text-gray2Pers">1. ¿Qué es una factura electrónica?</h3>
+                    <p class="text-gray-700 text-[17px]">Es un documento digital con validez fiscal que sustituye a las facturas en papel...</p>
+                </div>
+                <div>
+                    <h3 class="text-xl font-semibold text-gray2Pers">2. ¿El sistema cumple con las normativas fiscales?</h3>
+                    <p class="text-gray-700 text-[17px]">Sí, nuestro sistema está diseñado para ajustarse a las normativas vigentes en tu región...</p>
+                </div>
+                <div>
+                    <h3 class="text-xl font-semibold text-gray2Pers">3. ¿Qué necesito para emitir una factura electrónica?</h3>
+                    <ul class="list-disc pl-6 text-gray-700 text-[17px]">
+                        <li>Un registro en el sistema.</li>
+                        <li>La información fiscal de tu negocio y de tu cliente.</li>
+                        <li>Detalles del producto o servicio a facturar.</li>
+                    </ul>
+                </div>
+                <!-- Agrega más preguntas aquí -->
+            </div>
+        </section>
+
+        <!-- Configuraciones de usuario -->
+        <section id="user-settings" class="hidden container mx-auto py-8 max-w-4xl">
+            <div class="bg-gray-900 shadow-lg rounded-lg p-6">
+                <h2 class="text-2xl font-bold text-white mb-6 text-center">Configuraciones de cuenta</h2>
+                <form action="/facturacion/facturacion-personal/update" method="POST" enctype="multipart/form-data">
+                    <div class="flex items-center gap-6 mb-6">
+                        <% if(avatar) { %>
+                            <img id="profile-img" src="<%= avatar %>" alt="Avatar" class="w-24 h-24 rounded-full border-2 border-aquaPers" />
+                        <% } else { %>
+                            <img id="profile-img" src="../user-configs/user-avatar/userlogo.png" alt="Avatar" class="w-24 h-24 rounded-full border-2 border-aquaPers" />
+                        <% } %>
+                        <div>
+                            <a href="#" id="Cambiar" class="text-aquaPers">Cambiar foto de perfil</a>
+                            <input type="file" id="file-input" class="hidden" />
+                        </div>
+                    </div>
+
+                    <div class="grid md:grid-cols-2 gap-4 mb-6">
+                        <div>
+                            <label for="name" class="block text-gray-200">Nombre</label>
+                            <input type="text" name="Nombre_usuario" id="name" value="<%= data[0].Nombre_usuario %>" class="w-full bg-gray-300 text-black rounded-md px-3 py-2" />
+                        </div>
+                        <div>
+                            <label for="email" class="block text-gray-200">Email</label>
+                            <input type="email" name="Email" id="email" value="<%= data[0].Email %>" class="w-full bg-gray-300 text-black rounded-md px-3 py-2" />
+                        </div>
+                    </div>
+
+                    <div class="grid md:grid-cols-2 gap-4 mb-6">
+                        <div>
+                            <label for="current-password" class="block text-gray-200">Contraseña actual</label>
+                            <input type="password" id="current-password" value="<%= data[0].Passwrd %>" class="w-full bg-gray-300 text-black rounded-md px-3 py-2" />
+                        </div>
+                        <div>
+                            <label for="new-password" class="block text-gray-200">Nueva contraseña</label>
+                            <input type="password" name="Passwrd" id="new-password" class="w-full bg-gray-300 text-black rounded-md px-3 py-2" />
+                        </div>
+                    </div>
+
+                    <div class="flex justify-between items-center">
+                        <a href="#" class="text-aquaPers">Ver contraseña</a>
+                        <button type="submit" class="bg-aquaPers text-white font-medium py-2 px-4 rounded-md hover:opacity-90">Guardar cambios</button>
+                    </div>
+                </form>
+
+                <div class="border-t mt-6 pt-4">
+                    <h3 class="text-white font-bold mb-2">Opciones avanzadas</h3>
+                    <button id="btn-logout" class="text-red-600 font-medium">Cerrar sesión</button>
+                    <button id="delete-account" class="text-red-600 font-medium ml-4">Eliminar cuenta</button>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <script src="../JS/utils/drop.js"></script>
+</body>
+</html>

@@ -1,0 +1,190 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="/fontawesome-free-5.15.4-web/css/all.min.css">
+    <link rel="stylesheet" href="/output.css">
+    <title>Nueva factura</title>
+</head>
+<body class="font-cam">
+    <%- include('partials/header') %>
+    <%- include('partials/sidebar') %>
+    <main class="p-2 bg-whiteSmoke xl:ml-64 ">
+
+        <div id="load" class="h-screen flex align-middle justify-center"></div>
+        <div class="p-4 overflow-hidden">
+            <div class="flex justify-between mb-5">
+                <div>
+                    <h1 class="text-2xl text-gray2Pers font-semibold">Ventas generales</h1>
+                    <p class="text-sm">Obtén una visión detallada de tus ventas y devoluciones para diseñar estrategias comerciales.</p>
+                </div>
+            </div>
+            <div class="">
+                <h3 class="text-xl text-gray2Pers mt-3 flex ">
+                    Reportes de ventas
+                </h3>
+                <div class="xl:flex ">
+                    <div id="containergraph" class="h-72 w-full z-[1] bg-white mt-2"></div>
+                    <div id="main" class="h-72 w-full mx-2 z-[1] bg-white mt-2"></div>
+                </div>
+            </div>
+            <div class="mt-4">
+                <div class="flex justify-between">
+                    <div class="relative overflow-x-auto overflow-y-auto sm:rounded-lg max-h-[300px] mx-w-[300px] w-[500px] mr-4 h-auto rounded-lg">
+                        <p class="w-[480px] mt-1 font font-semibold text-gray2Pers text-[16px] mb-1">
+                            <span class="text-aquaPers font-bold">*</span>Reportes creados
+                         </p>
+                        <table class="w-full text-sm text-left rtl:text-right text-gray-500 text-gray-400 h-auto rounded-lg">
+                            <thead class="text-xs text-gray-700 uppercase dark:text-gray-400">
+                                <tr>
+                                    <th scope="col" class="px-6 py-3 bg-gray-50 dark:bg-gray-800">
+                                        ID
+                                    </th>
+                                    <th scope="col" class="px-6 py-3 dark:bg-gray-800">
+                                        Nombre
+                                    </th>
+                                    <th scope="col" class="px-6 py-3 bg-gray-50 dark:bg-gray-800">
+                                        Accion
+                                    </th>
+                                </tr>
+                            </thead>
+                            <tbody class="h-auto">
+                                <% if (data) { %>
+                                    <% for(let i = 0; i < data.length; i++) {%>
+                                        <tr class="border-b border-gray-200 dark:border-gray-700">
+                                            <th id="" scope="row" class="px-6 py-4 font-medium text-gray-900 whitespace-nowrap bg-gray-50 dark:text-white dark:bg-gray-700">
+                                                <%= (i + 1) %>
+                                            </th>
+                                            <td id="Cantidad" class="px-6 py-4 bg-gray-700 w-[150px] overflow-x-hidden">
+                                                <%= data[i].Nombre %>
+                                            </td>
+                                            <td class="px-6 py-4 bg-gray-700">
+                                                <a href="/facturacion/reportes/ventas-generales/descargar/<%= data[i].ID %> " class="font-medium text-blue-600 dark:text-aquaPers hover:underline">Descargar</a>
+                                                <a href="/facturacion/reportes/ventas-generales/delete/<%= data[i].ID %>" class="font-medium text-blue-600 dark:text-red-700 hover:underline">Borrar</a>
+                                            </td>
+                                        </tr>
+                                    <% } %>
+                                <%  } %>
+                            </tbody>
+                        </table>
+                    </div>
+                    <div class="w-2/3 max-h-[300px]">
+                        <p class="w-[480px] mt-1 font font-semibold text-gray2Pers text-[16px] mb-1">
+                           <span class="text-aquaPers font-bold">*</span>Modelo Basico de reportes
+                        </p>
+                        <iframe id="pdfViewer" src="/reports/preview.pdf#toolbar=0" width="100%" height="300px" class="rounded-lg border-none"></iframe>
+    
+                    </div>
+                </div>
+            </div>
+            <!-- <div>
+                <h3 class="text-2xl text-gray2Pers font-semibold">Periodo de tiempo:</h3>
+                <form class="max-w-sm mx-auto">
+                    <label for="countries" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Select an option</label>
+                    <select id="countries" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500">
+                    <option selected>Choose a country</option>
+                    <option value="US">United States</option>
+                    <option value="CA">Canada</option>
+                    <option value="FR">France</option>
+                    <option value="DE">Germany</option>
+                    </select>
+                </form>
+                
+            </div> -->
+        </div>
+        
+                
+        <div id="crud-modal" class="hidden overflow-y-auto overflow-x-hidden fixed top-0 right-0 left-0 z-50 justify-center items-center w-full md:inset-0 h-[calc(100%-1rem)] max-h-full">
+            <div class="relative p-4 w-full max-w-md max-h-full">
+                <!-- Modal content -->
+                <div class="relative bg-white rounded-lg shadow-sm dark:bg-gray-700">
+                    <!-- Modal header -->
+                    <div class="flex items-center justify-between p-4 md:p-5 border-b rounded-t dark:border-gray-600 border-gray-200">
+                        <h3 class="text-lg font-semibold text-gray-900 dark:text-white">
+                            Selecciona el perido a realizar tu reporte
+                        </h3>
+                        <button id="Close" type="button" class="text-gray-400 bg-transparent hover:bg-gray-200 hover:text-gray-900 rounded-lg text-sm w-8 h-8 ms-auto inline-flex justify-center items-center dark:hover:bg-gray-600 dark:hover:text-white" data-modal-toggle="crud-modal">
+                            <svg class="w-3 h-3" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 14 14">
+                                <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="m1 1 6 6m0 0 6 6M7 7l6-6M7 7l-6 6"/>
+                            </svg>
+                            <span class="sr-only">Close modal</span>
+                        </button>
+                    </div>
+                    <!-- Modal body -->
+                    <form id="formulario" class="p-4 md:p-5 " action="/facturacion/reportes/ventas-generales/crear-reporte" method="post">
+                        <div>
+                            <select id="countries" name="perido" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg block w-full p-2.5 bg-gray-700 border-gray-600 text-white  focus:border-aquaPers">
+                                <option selected value="-">Selecciona un periodo</option>
+                                <option value="Total">Total</option>
+                                <option value="Mensual">Mensual</option>
+                            </select>
+                        
+                        </div>
+                        <button id="btn" type="submit" class="mt-2 text-white inline-flex items-center bg-aquaPers focus:outline-none font-medium rounded-lg text-sm px-5 py-2.5 text-center">
+                            Generar repore
+                        </button>
+                    </form>
+                </div>
+            </div>
+        </div> 
+        <div data-dial-init class="fixed end-6 bottom-6 group " id="add">
+            <div id="speed-dial-menu-default" class="flex flex-col items-center hidden mb-4 space-y-2">
+                <button type="button" data-tooltip-target="tooltip-share" data-tooltip-placement="left" class="flex justify-center items-center w-[52px] h-[52px] text-gray-500 hover:text-gray-900 bg-white rounded-full border border-gray-200 border-gray-600 shadow-xs hover:text-white text-gray-400 hover:bg-gray-50 bg-gray-700 hover:bg-gray-600 focus:outline-none ">
+                    <svg class="w-5 h-5" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="currentColor" viewBox="0 0 18 18">
+                        <path d="M14.419 10.581a3.564 3.564 0 0 0-2.574 1.1l-4.756-2.49a3.54 3.54 0 0 0 .072-.71 3.55 3.55 0 0 0-.043-.428L11.67 6.1a3.56 3.56 0 1 0-.831-2.265c.006.143.02.286.043.428L6.33 6.218a3.573 3.573 0 1 0-.175 4.743l4.756 2.491a3.58 3.58 0 1 0 3.508-2.871Z"/>
+                    </svg>
+                    <span class="sr-only">Share</span>
+                </button>
+                <div id="tooltip-share" role="tooltip" class="absolute z-10 invisible inline-block w-auto px-3 py-2 text-sm font-medium text-white transition-opacity duration-300 bg-gray-900 rounded-lg shadow-xs opacity-0 tooltip dark:bg-gray-700">
+                    Share
+                    <div class="tooltip-arrow" data-popper-arrow></div>
+                </div>
+                <button type="button" data-tooltip-target="tooltip-print" data-tooltip-placement="left" class="flex justify-center items-center w-[52px] h-[52px] text-gray-500 hover:text-gray-900 bg-white rounded-full border border-gray-200 dark:border-gray-600 shadow-xs dark:hover:text-white dark:text-gray-400 hover:bg-gray-50 dark:bg-gray-700 dark:hover:bg-gray-600 focus:ring-4 focus:ring-gray-300 focus:outline-none dark:focus:ring-gray-400">
+                    <svg class="w-5 h-5" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="currentColor" viewBox="0 0 20 20">
+                        <path d="M5 20h10a1 1 0 0 0 1-1v-5H4v5a1 1 0 0 0 1 1Z"/>
+                        <path d="M18 7H2a2 2 0 0 0-2 2v6a2 2 0 0 0 2 2v-3a2 2 0 0 1 2-2h12a2 2 0 0 1 2 2v3a2 2 0 0 0 2-2V9a2 2 0 0 0-2-2Zm-1-2V2a2 2 0 0 0-2-2H5a2 2 0 0 0-2 2v3h14Z"/>
+                    </svg>
+                    <span class="sr-only">Print</span>
+                </button>
+                <div id="tooltip-print" role="tooltip" class="absolute z-10 invisible inline-block w-auto px-3 py-2 text-sm font-medium text-white transition-opacity duration-300 bg-gray-900 rounded-lg shadow-xs opacity-0 tooltip dark:bg-gray-700">
+                    Print
+                    <div class="tooltip-arrow" data-popper-arrow></div>
+                </div>
+                <button type="button" data-tooltip-target="tooltip-download" data-tooltip-placement="left" class="flex justify-center items-center w-[52px] h-[52px] text-gray-500 hover:text-gray-900 bg-white rounded-full border border-gray-200 dark:border-gray-600 shadow-xs dark:hover:text-white dark:text-gray-400 hover:bg-gray-50 dark:bg-gray-700 dark:hover:bg-gray-600 focus:ring-4 focus:ring-gray-300 focus:outline-none dark:focus:ring-gray-400">
+                    <svg class="w-5 h-5" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="currentColor" viewBox="0 0 20 20">
+                        <path d="M14.707 7.793a1 1 0 0 0-1.414 0L11 10.086V1.5a1 1 0 0 0-2 0v8.586L6.707 7.793a1 1 0 1 0-1.414 1.414l4 4a1 1 0 0 0 1.416 0l4-4a1 1 0 0 0-.002-1.414Z"/>
+                        <path d="M18 12h-2.55l-2.975 2.975a3.5 3.5 0 0 1-4.95 0L4.55 12H2a2 2 0 0 0-2 2v4a2 2 0 0 0 2 2h16a2 2 0 0 0 2-2v-4a2 2 0 0 0-2-2Zm-3 5a1 1 0 1 1 0-2 1 1 0 0 1 0 2Z"/>
+                    </svg>
+                    <span class="sr-only">Download</span>
+                </button>
+                <div id="tooltip-download" role="tooltip" class="absolute z-10 invisible inline-block w-auto px-3 py-2 text-sm font-medium text-white transition-opacity duration-300 bg-gray-900 rounded-lg shadow-xs opacity-0 tooltip dark:bg-gray-700">
+                    Download
+                    <div class="tooltip-arrow" data-popper-arrow></div>
+                </div>
+                <button type="button" data-tooltip-target="tooltip-copy" data-tooltip-placement="left" class="flex justify-center items-center w-[52px] h-[52px] text-gray-500 hover:text-gray-900 bg-white rounded-full border border-gray-200 dark:border-gray-600 dark:hover:text-white shadow-xs dark:text-gray-400 hover:bg-gray-50 dark:bg-gray-700 dark:hover:bg-gray-600 focus:ring-4 focus:ring-gray-300 focus:outline-none dark:focus:ring-gray-400">
+                    <svg class="w-5 h-5" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="currentColor" viewBox="0 0 18 20">
+                        <path d="M5 9V4.13a2.96 2.96 0 0 0-1.293.749L.879 7.707A2.96 2.96 0 0 0 .13 9H5Zm11.066-9H9.829a2.98 2.98 0 0 0-2.122.879L7 1.584A.987.987 0 0 0 6.766 2h4.3A3.972 3.972 0 0 1 15 6v10h1.066A1.97 1.97 0 0 0 18 14V2a1.97 1.97 0 0 0-1.934-2Z"/>
+                        <path d="M11.066 4H7v5a2 2 0 0 1-2 2H0v7a1.969 1.969 0 0 0 1.933 2h9.133A1.97 1.97 0 0 0 13 18V6a1.97 1.97 0 0 0-1.934-2Z"/>
+                    </svg>
+                    <span class="sr-only">Copy</span>
+                </button>
+                <div id="tooltip-copy" role="tooltip" class="absolute z-10 invisible inline-block w-auto px-3 py-2 text-sm font-medium text-white transition-opacity duration-300 bg-gray-900 rounded-lg shadow-xs opacity-0 tooltip dark:bg-gray-700">
+                    Copy
+                    <div class="tooltip-arrow" data-popper-arrow></div>
+                </div>
+            </div>
+            <button type="button" data-dial-toggle="speed-dial-menu-default" aria-controls="speed-dial-menu-default" aria-expanded="false" class="flex items-center justify-center text-white bg-gray-900 rounded-full w-14 h-14 hover:bg-aquaPers focus:outline-none">
+                <svg class="w-5 h-5 transition-transform group-hover:rotate-45" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 18 18">
+                    <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 1v16M1 9h16"/>
+                </svg>
+                <span class="sr-only">Open actions menu</span>
+            </button>
+        </div>
+
+    </main>
+    <script type="text/javascript" src="https://fastly.jsdelivr.net/npm/echarts@5.6.0/dist/echarts.min.js" defer async></script>
+    <script src="/JS/Graphics/ventasFrec.js"  type="module"></script>
+    <script src="/JS/utils/drop.js" type="module"></script>
+</body>
+</html>

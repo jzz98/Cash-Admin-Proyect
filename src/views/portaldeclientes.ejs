@@ -1,0 +1,352 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="/fontawesome-free-5.15.4-web/css/all.min.css">
+    <link rel="stylesheet" href="/output.css">
+    <title>Nueva factura</title>
+</head>
+<body class="font-cam">
+    <%- include('partials/header') %>
+    <%- include('partials/sidebar') %>
+    <div id="bg" class="hidden absolute inset-0 z-4 bg-black bg-opacity-70 h-auto"></div>
+
+    <main class="p-3 bg-whiteSmoke xl:ml-64">
+        <div class="flex justify-between">
+          <div class="text-gray2Pers">
+            <h1 class="text-3xl font-semibold">Portal de clientes</h1>
+            <p>Registra clientes y gestiona tus clientes de forma rapida y sencilla.</p>
+          </div>
+          <div>
+            <button id="btnC" type="" class="text-white inline-flex items-center bg-aquaPers focus:outline-none font-medium rounded-lg text-sm px-5 py-2.5 text-center">
+              Posibles clientes
+            </button>
+          </div>
+
+          <!-- Posibles clientes -->
+          <div id="static-modal" data-modal-backdrop="static" tabindex="-1" aria-hidden="true" class="hidden overflow-y-auto overflow-x-hidden fixed top-0 right-0 left-0 z-50 justify-center items-center w-full md:inset-0 h-[calc(100%-1rem)] max-h-full">
+              <div class="relative p-4 w-full max-w-2xl max-h-full">
+                  <!-- Modal content -->
+                  <div class="relative bg-white rounded-lg shadow-sm dark:bg-gray-700">
+                      <!-- Modal header -->
+                      <div class="flex items-center justify-between p-4 md:p-5 border-b rounded-t dark:border-gray-600 border-gray-200">
+                          <h3 class="text-xl font-semibold text-gray-900 dark:text-white">
+                            Posibles clientes
+                            </h3>
+                          <button id="close2" type="button" class="text-gray-400 bg-transparent hover:bg-gray-200 hover:text-gray-900 rounded-lg text-sm w-8 h-8 ms-auto inline-flex justify-center items-center dark:hover:bg-gray-600 dark:hover:text-white" data-modal-hide="static-modal">
+                              <svg class="w-3 h-3" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 14 14">
+                                  <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="m1 1 6 6m0 0 6 6M7 7l6-6M7 7l-6 6"/>
+                              </svg>
+                              <span class="sr-only">Close modal</span>
+                          </button>
+                      </div>
+                      <!-- Modal body -->
+                    <% if (recovery) { %> 
+                        <% for (let i = 0; i < recovery.length; i++) { %>
+                            <form action="/facturacion/portal-de-clientes/posibles-clientes/" method="post" class="">
+                                <div class="p-4 md:p-5 space-y-4 ">
+                                    <div class="flex items-center gap-4">
+                                        <img class="w-10 h-10 rounded-full" src="/Fonts/userlogo.png" alt="">
+                                        <div class="flex justify-between w-full">
+                                            <div class="font-medium dark:text-white">
+                                                <div><%= recovery[i].Contacto  %></div>
+                                                <input name="user" value="<%= recovery[i].Contacto %>" type="text" class="hidden">
+                                                <div class="text-sm text-gray-500 dark:text-gray-400">Registrado como ingreso</div>
+                                            </div>
+                                            <div>
+                                                <button type="submit" class="font-medium text-blue-600 dark:text-aquaPers hover:underline">Agregar Cliente</button>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </form>
+                        <% } %>
+                    <% } %>
+                        
+                      </div>
+                      <!-- Modal footer -->
+                      <div class="flex items-center p-4 md:p-5 border-t border-gray-200 rounded-b dark:border-gray-600">
+                        <a href="/facturacion/portal-de-clientes" id="btnform" type="submit" class="text-white inline-flex items-center bg-aquaPers focus:outline-none font-medium rounded-lg text-sm px-5 py-2.5 text-center">
+                            Aceptar
+                        </a>                          
+                      </div>
+                  </div>
+              </div>
+          </div>
+
+        </div>
+        <div class="text-gray2Pers my-5">
+            <h1 class="text-xl font-semibold my-1">Agregar clientes</h1>
+            <div class="xl:flex xl:justify-between">
+                <div class="card bg-base-100 image-full w-96 shadow-xl mb-10">
+                  <figure class="">
+                    <img class=""
+                    src="/Fonts/userlogo.png"
+                      alt="" />
+                  </figure>
+                  <div class="card-body">
+                    <h2 class="card-title">Cliente nuevo!</h2>
+                    <p>Quisieras agregar un cliente nuevo?</p>
+                    <div class="card-actions justify-end">
+                      <button id="btnCliente" class="btn btn-primary bg-aquaPers border-none hover:bg-aquaPers">Agregar cliente</button>
+                    </div>
+                  </div>
+                  
+                </div>
+                <div class="overflow-y-auto xl:w-[800px] max-h-[180px] xl:h-[200px] "> <!-- Contenedor para la tabla -->
+                  <table class="w-full text-sm text-left rtl:text-right text-gray-500 dark:text-gray-400">
+                      <thead class="text-xs text-gray-700 uppercase dark:bg-gray-700 dark:text-gray-400">
+                          <tr>
+                              <th scope="col" class="px-6 py-3">ID</th>
+                              <th scope="col" class="px-6 py-3">Nombre</th>
+                              <th scope="col" class="px-6 py-3">Apellido</th>
+                              <th scope="col" class="px-6 py-3">Telefono</th>
+                              <th scope="col" class="px-6 py-3">Direccion</th>
+                              <th scope="col" class="px-6 py-3">Contacto</th>
+                              <th scope="col" class="px-6 py-3">Accion</th>
+                          </tr>
+                      </thead>
+                      <tbody>
+                          <% if (data) { %>
+                              <% for (let i = 0; i < data.length; i++) { %>
+                                  <tr class="border-b dark:bg-gray-800 dark:border-gray-700 border-gray-200">
+                                      <th scope="row" class="px-6 py-4 font-medium text-gray-900 whitespace-nowrap dark:text-white">
+                                          <%= (i + 1) %>
+                                      </th>
+                                      <th scope="row" class="px-6 py-4 font-medium text-gray-900 whitespace-nowrap dark:text-white">
+                                          <%= data[i].Nombre %>
+                                      </th>
+                                      <td class="px-6 py-4">
+                                          <%= data[i].Apellido %>
+                                      </td>
+                                      <td class="px-6 py-4">
+                                          <%= data[i].Telefono %>
+                                      </td>
+                                      <td class="px-6 py-4">
+                                          -
+                                          <%= data[i].Direccion %>
+                                      </td>
+                                      <td class="px-6 py-4">
+                                        <%= data[i].Email %>
+                                    </td>
+                                      <td class="px-6 py-4">
+                                          <a href="/facturacion/portal-de-clientes/update/<%= data[i].ID %> " class="font-medium text-blue-600 dark:text-aquaPers hover:underline">Editar</a>
+                                          <a href="/facturacion/portal-de-clientes/delete/<%= data[i].ID %> " class="font-medium text-blue-600 dark:text-red-700 hover:underline">Borrar</a>
+                                      </td>
+                                  </tr>
+                              <% } %>
+                          <% } else { %>
+                              <tr class="border-b dark:bg-gray-800 dark:border-gray-700 border-gray-200">
+                                  <td colspan="5" class="px-6 py-4 text-center text-gray-500">No hay registros disponibles</td>
+                              </tr>
+                          <% } %>
+                      </tbody>
+                  </table>
+              </div>
+              
+            </div>
+        
+        <div id="crud-modal" class="hidden overflow-y-auto overflow-x-hidden fixed top-0 right-0 left-0 z-50 justify-center items-center w-full md:inset-0 h-[calc(100%-1rem)] max-h-full">
+            <div class="relative p-4 w-full max-w-md max-h-full">
+                <!-- Modal content -->
+                <div class="relative bg-white rounded-lg shadow-sm dark:bg-gray-700">
+                    <!-- Modal header -->
+                    <div class="flex items-center justify-between p-4 md:p-5 border-b rounded-t dark:border-gray-600 border-gray-200">
+                        <h3 class="text-lg font-semibold text-gray-900 dark:text-white">
+                          Agregar un nuevo cliente
+                        </h3>
+                        <button id="Close" type="button" class="text-gray-400 bg-transparent hover:bg-gray-200 hover:text-gray-900 rounded-lg text-sm w-8 h-8 ms-auto inline-flex justify-center items-center dark:hover:bg-gray-600 dark:hover:text-white" data-modal-toggle="crud-modal">
+                            <svg class="w-3 h-3" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 14 14">
+                                <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="m1 1 6 6m0 0 6 6M7 7l6-6M7 7l-6 6"/>
+                            </svg>
+                            <span class="sr-only">Close modal</span>
+                        </button>
+                    </div>
+                    <!-- Modal body -->
+                    <form id="formulario" class="p-4 md:p-5" action="/facturacion/portal-de-clientes/agregar-cliente" method="post">
+                        <div class="grid gap-4 mb-4 grid-cols-2">
+                            <div class="col-span-2">
+                                <label for="name" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Nombre</label>
+                                <input autocomplete="off" type="text" name="Nombre" id="nombre" class="focus:outline-none bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5 dark:bg-gray-600 dark:border-gray-500 dark:placeholder-gray-400 dark:text-white dark:focus:ring-primary-500 dark:focus:border-primary-500" placeholder="Justin">
+                            </div>
+                            <div class="col-span-2">
+                                <label for="price" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Apellido</label>
+                                <input autocomplete="off" type="text" name="Apellido" id="Apellido" class="focus:outline-none bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5 dark:bg-gray-600 dark:border-gray-500 dark:placeholder-gray-400 dark:text-white dark:focus:ring-primary-500 dark:focus:border-primary-500" placeholder="Taveras" >
+                            </div>
+                            <div class="col-span-2 ">
+                              <label for="category" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">RNC (Cedula)</label>
+                              <input autocomplete="off" type="text" name="RNC" id="rnc" class="focus:outline-none bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5 dark:bg-gray-600 dark:border-gray-500 dark:placeholder-gray-400 dark:text-white dark:focus:ring-primary-500 dark:focus:border-primary-500" placeholder="123456789" >
+
+                            </div>
+                            <div class="col-span-2 sm:col-span-1">
+                                <label for="category" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Numero telefonico</label>
+                                <input autocomplete="off" type="text" name="Telefono" id="Telefono" class="focus:outline-none bg-gray-50 border border-gray-300 text-gray-900 
+                                text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5 dark:bg-gray-600 dark:border-gray-500 
+                                dark:placeholder-gray-400 dark:text-white dark:focus:ring-primary-500 dark:focus:border-primary-500" placeholder="123-456-789">
+                            </div>
+                            <div class="col-span-2 sm:col-span-1">
+                              <label for="category" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Correo</label>
+                              <input autocomplete="off" type="text" name="Email" id="correo" class="focus:outline-none bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5 dark:bg-gray-600 dark:border-gray-500 dark:placeholder-gray-400 dark:text-white dark:focus:ring-primary-500 dark:focus:border-primary-500" placeholder="ejemplo@gmail.com" >
+
+                            </div>
+                            <div class="col-span-2">
+                                <label for="description" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Direccion (Opcional)</label>
+                                <textarea name="Direccion" id="description" rows="4" class="focus:outline-none resize-none block p-2.5 w-full text-sm text-gray-900 bg-gray-50 rounded-lg border border-gray-300 dark:bg-gray-600 dark:border-gray-500 dark:placeholder-gray-400 dark:text-white dark:focus:border-aquaPers" placeholder="Escribe tu Direccion aqui"></textarea>                    
+                            </div>
+                        </div>
+                        <div class="container-error text-sm text-center text-red-600 font-semibold mb-1">
+                            <span id="error">
+                            </span>
+                        </div>
+                        <button id="btnform" type="submit" class="text-white inline-flex items-center bg-aquaPers focus:outline-none font-medium rounded-lg text-sm px-5 py-2.5 text-center">
+                            <svg class="me-1 -ms-1 w-5 h-5" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg"><path fill-rule="evenodd" d="M10 5a1 1 0 011 1v3h3a1 1 0 110 2h-3v3a1 1 0 11-2 0v-3H6a1 1 0 110-2h3V6a1 1 0 011-1z" clip-rule="evenodd"></path></svg>
+                          Agrear cliente
+                        </button>
+                    </form>
+                </div>
+            </div>
+        </div> 
+        <div id="newForm" class="w-screen">
+
+        </div>
+        <h1 class="text-xl font-semibold my-2 text-gray2Pers">Contacta a los clientes</h1>
+            <div class="text-gray2Pers dark:bg-gray-800 p-3">
+            <form id="form-api" action="/facturacion/portal-de-clientes/api/data" method="POST">
+                <div class="flex">
+                    <div class="flex flex-col">
+                      <span class="block text-sm font-medium text-gray-900 dark:text-white">Cliente</span>
+                      <div class="flex items-center max-w-sm">   
+                        <div class="relative w-[800px]">
+                            <div class="absolute inset-y-0 start-0 flex items-center ps-3 pointer-events-none">
+                              <svg class="w-4 h-4 text-gray-500 dark:text-gray-400" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 20 20">
+                                <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="m19 19-4-4m0-7A7 7 0 1 1 1 8a7 7 0 0 1 14 0Z"/>
+                              </svg>
+                            </div>
+                            <input type="text" name="Nombre" autocomplete="off" id="simple-search-2" class="bg-gray-50 border border-gray-600 text-gray-900 text-sm rounded-lg focus:outline-none focus:border-aquaPers  xl:w-[700px] md:w-[400px] w-[200px] ps-10 p-2.5  dark:bg-gray-700 dark:focus:border-aquaPers dark:placeholder-gray-400 dark:text-white dark:focus:border-aquaPers dark:focus:border-aquaPers" placeholder="Busca un usuario..." />
+                        </div>
+                        <button type="button" class="hover:cursor-pointer mt-2 bg-blue-700 mx-2 font-medium rounded-lg text-sm px-5 py-2.5 me-2 mb-2 dark:bg-aquaPers  focus:outline-none">Buscar</button>
+                      </div>
+                    </div>
+                    <div class="relative w-screen ">
+                        <ul id="search-list" class="hidden divide-y divide-gray-200 dark:divide-gray-700 z-10  bg-gray-900 rounded-lg absolute xl:right-[64pc] md:right-[36pc] top-[69px] xl:h-[150px] overflow-y-auto right-[17pc]">
+                            <% if(data) {%>
+                                <% for(let i = 0; i < data.length; i++){ %>
+                                    <li class="pb-3 sm:pb-4 p-2 hover:cursor-pointer">
+                                        <div class="flex items-center space-x-4 rtl:space-x-reverse bg-gray-800 p-1 rounded-[15px]">
+                                            <div class="shrink-0">
+                                                <img class="w-8 h-8 rounded-full" src="/Fonts/userlogo.png" alt="Neil image">
+                                            </div>
+                                            <div class="flex-1 min-w-0">
+                                                <p  class="text-sm font-medium text-gray-900 truncate dark:text-white">
+                                                    <%=data[i].Nombre%>
+                                                </p>
+                                                <p class="input-email text-sm text-gray-500 truncate dark:text-gray-400">
+                                                    <%=data[i].Email  %>
+                                                </p>
+                                            </div>
+                                        </div>
+                                    </li>
+                                <% } %>
+                            <% } %>
+                        </ul>
+                    </div>
+                </div>
+                <div class="ml-1 py-4">
+                  <label for="message" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Tu mensaje</label>
+                  <textarea id="message" name="Mensaje" rows="3" cols="90" class="resize-none block p-2.5 w-full text-sm text-gray-900 bg-gray-50 rounded-lg border border-gray-300 focus:outline-none dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:border-aquaPers" placeholder="Escribe el mensaje aqui..."></textarea>  
+                </div>
+                <div class="">
+                  <label class=" block mb-2 text-sm font-medium text-gray-900 dark:text-white" for="file_input">Sube un archvo</label>
+                  <input name="Archivo" class="block w-1/2 text-sm text-gray-900 border border-gray-300 rounded-lg cursor-pointer bg-gray2Pers dark:text-gray-400 focus:outline-none dark:bg-gray2Pers dark:border-gray-600 dark:placeholder-gray2Pers" id="file_input" type="file">
+                </div>
+                <div class="flex flex-col">
+                  <div class="pt-3">                
+                    <button type="submit" class="flex p-2 mt-2 mx-2 bg-blue-700 font-medium rounded-lg text-sm px-5 py-2.5 me-2 mb-2 dark:bg-aquaPers  focus:outline-none">
+                      Enviar correo
+                      <svg class="rtl:rotate-180 w-3.5 h-3.5 ms-2 mt-1" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 14 10">
+                      <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M1 5h12m0 0L9 1m4 4L9 9"/>
+                      </svg>
+                    </button>
+                      
+    
+                  </div>
+                </div>
+            </form>
+        
+    </main>
+            <div class="hidden container mx-auto py-8 max-w-[50pc] absolute top-5 xl:right-[20%] right-1" id="user-settings">
+            <div class="bg-gray-900 shadow-lg rounded-lg p-6 md:p-8 flex flex-col md:flex-row">
+              <div class="w-full md:w-3/4 pr-0 md:pr-8 mb-6 md:mb-0">
+                <h1 class="text-2xl font-bold mb-4 text-center">Configuraciones de cuenta</h1>
+                <form action="/facturacion/facturacion-personal/update" method="POST" id="form">
+                  <div class="mb-42 flex justify-center align-middle w-full flex">
+                    <div>
+                      <% if(avatar) {%> 
+                        <img
+                        id="profile-img"
+                        class="w-[110px] h-[100px] rounded-[500px]"
+                        src="<%= avatar %>"
+                        alt="Large avatar"/>
+                      <% } else{%> 
+                        <img 
+                        id="profile-img"
+                        class="w-[110px] h-[100px] rounded-[500px]"
+                        src="../user-configs/user-avatar/userlogo.png"
+                        alt="Large avatar" />
+                        <% } %>
+                    </div>
+                  </div>
+                  <div class="text-center mb-4">
+                    <a href="javascript:void(0);" class="text-aquaPers" id="Cambiar">Cambiar foto de perfil</a>
+                    <input type="file" class="hidden" id="file-input" enctype="multipart/form-data">
+                  </div>               
+                  <div class="mb-4">
+                    <label for="name" class="block font-medium text-gray-200 mb-2">Nombre</label>
+                    <input type="text" id="name" name="Nombre_usuario" value="<%= infouser[0].Nombre_usuario  %>" class="w-full border-gray-300 rounded-md shadow-sm focus:outline-none bg-gray-300 text-black px-3 py-2">
+                  </div>
+                  <div class="mb-4">
+                    <label for="email" class="block font-medium text-gray-200 mb-2">Email</label>
+                    <input type="email" id="email" name="Email" value="<%= infouser[0].Email  %>" class="w-full border-gray-300 rounded-md shadow-sm focus:outline-none bg-gray-300 text-black px-3 py-2 mb-2">
+                  </div>
+                  <div class="mb-4">
+                    <label for="current-password" class="block font-medium text-gray-200 mb-2">Contraseña actual</label>
+                    <input type="password" id="current-password" value="<%= infouser[0].Passwrd  %>" placeholder="Enter your current password" class="w-full border-gray-300 rounded-md shadow-sm focus:outline-none bg-gray-300 text-black px-3 py-2">
+                  
+                  </div>
+                  <div class="mb-4">
+                    <label for="new-password" class="block font-medium text-gray-200 mb-2">Nueva contraseña</label>
+                    <input type="password" id="new-password" name="Passwrd" placeholder="Enter a new password" class="w-full border-gray-300 rounded-md shadow-sm focus:outline-none bg-gray-300 text-black px-3 py-2">
+                  </div>
+                  <div class="flex justify-between items-center mb-4">
+                    <a href="#" class="text-aquaPers font-medium">Ver contraseña</a>
+                    <button id="btn-submit" type="submit" class="bg-aquaPers text-white font-medium py-2 px-4 rounded-md focus:outline-none focus:ring focus:ring-blue-200 focus:ring-opacity-50">Save Changes</button>
+                  </div>
+                </form>
+              </div>
+              <div class="w-full md:w-1/4 border-t md:border-t-0 md:border-l border-gray-300 pt-6 md:pt-0 md:pl-8">
+                <h2 class="text-lg font-bold mb-4">Configuraciones avanzadas</h2>
+                <div class="flex flex-col justify-center">
+                  <div>
+                    <button id="btn-logout" class="text-red-800 font-medium">Log Out</button>
+                  </div>
+                  <div>
+                    <button class="text-red-700 hover:text-red-600 font-medium" id="delete-account">Delete Account</button>
+                  </div>
+                </div>
+                <h2 class="mt-10 text-lg font-bold">Configuraciones de cuenta</h2>
+                <div class="my-4">
+                  <a href="javascript:void(0);" id="cambiar-nombre" class="text-aquaPers font-medium">Cambiar nombre</a>
+                </div>
+                <div class="my-4">
+                  <a href="javascript:void(0);" id="cambiar-email" class="text-aquaPers font-medium">Cambiar correo</a>
+                </div>
+                <div class="my-4">
+                  <a href="javascript:void(0);" id="cambiar-password" class="text-aquaPers font-medium">Cambiar contraseña</a>
+                </div>
+              </div>
+            </div>
+        </div>
+    <script src="/JS/portalClientes.js" type="module"></script>
+</body>
+</html>

@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <link rel="stylesheet" href="/fontawesome-free-5.15.4-web/css/all.min.css" />
+  <link rel="stylesheet" href="/output.css" />
+  <title>Resumen de ingresos</title>
+</head>
+<body class="bg-white font-cam text-gray-700">
+  <%- include('partials/header') %>
+  <%- include('partials/sidebar') %>
+
+  <main class="p-6 xl:ml-64">
+    <h1 class="text-4xl font-bold text-gray-800 mb-2">Resumen de ingresos</h1>
+    <p class="text-gray-600 xl:mr-[90px] text-base leading-relaxed">
+      Visualiza un resumen detallado de los ingresos recibidos, organizados cronológicamente para facilitar su revisión. Este resumen incluye cada transacción con su monto correspondiente.
+    </p>
+
+    <!-- Gráfico -->
+    <section class="mt-10">
+      <h2 class="text-2xl font-semibold text-gray-800 mb-2">Gráfico comparativo</h2>
+      <div class="bg-whiteSmoke border border-gray-200 rounded-xl p-4 shadow-sm">
+        <div id="containergraph" class="h-80 w-full"></div>
+      </div>
+    </section>
+
+    <!-- Información adicional -->
+    <section class="mt-10 border-t pt-6">
+      <h2 class="text-2xl font-semibold text-gray-800 mb-4">Información adicional</h2>
+      <div class="grid grid-cols-1 sm:grid-cols-2 xl:grid-cols-2 gap-6">
+        
+        <!-- Total en ventas -->
+        <div class="bg-gray-100 border border-gray-300 p-5 rounded-xl shadow-sm flex items-center space-x-4">
+          <i class="fas fa-dollar-sign text-2xl text-green-600"></i>
+          <div>
+            <p class="text-lg font-semibold">Total en ventas</p>
+            <p id="Total" class="text-xl text-gray-700 font-bold">-</p>
+          </div>
+        </div>
+
+        <!-- Promedio de ventas -->
+        <div class="bg-gray-100 border border-gray-300 p-5 rounded-xl shadow-sm flex items-center space-x-4">
+          <i class="fas fa-chart-line text-2xl text-blue-600"></i>
+          <div>
+            <p class="text-lg font-semibold">Promedio de ventas</p>
+            <p id="Promedio" class="text-xl text-gray-700 font-bold">-</p>
+          </div>
+        </div>
+
+        <!-- Mayor venta -->
+        <div class="bg-gray-100 border border-gray-300 p-5 rounded-xl shadow-sm flex items-center space-x-4">
+          <i class="fas fa-arrow-up text-2xl text-purple-600"></i>
+          <div>
+            <p class="text-lg font-semibold">Mayor venta</p>
+            <p id="MayorVenta" class="text-xl text-gray-700 font-bold">-</p>
+          </div>
+        </div>
+
+        <!-- Menor venta -->
+        <div class="bg-gray-100 border border-gray-300 p-5 rounded-xl shadow-sm flex items-center space-x-4">
+          <i class="fas fa-arrow-down text-2xl text-red-600"></i>
+          <div>
+            <p class="text-lg font-semibold">Menor venta</p>
+            <p id="MenorVenta" class="text-xl text-gray-700 font-bold">-</p>
+          </div>
+        </div>
+
+      </div>
+    </section>
+  </main>
+
+  <script src="https://fastly.jsdelivr.net/npm/echarts@5.6.0/dist/echarts.min.js"></script>
+  <script src="/JS/Graphics/ingresosgraph.js" type="module"></script>
+  <script src="/JS/utils/drop.js"></script>
+</body>
+</html>

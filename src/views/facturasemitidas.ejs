@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="../fontawesome-free-5.15.4-web/css/all.min.css">
+    <link rel="stylesheet" href="/output.css">
+    <title>Nueva factura</title>
+</head>
+<body class="font-cam">
+    <%- include('partials/header') %>
+    <%- include('partials/sidebar') %>
+    <main class="p-3 bg-whiteSmoke xl:ml-64 h-screen">
+        <div class="text-gray2Pers ">
+            <h1 class="text-3xl">Facturas emitidas</h1>
+            <p class="text-sm">En esta seccion podras ver todas las facturas que haz emitido.</p>
+        </div>
+    
+            <div class="px-4">
+                <h3 class="text-xl mt-4 text-gray-900 font-semibold">Monitreo de actividad</h3>
+                <div class="flex justify-between">
+                <% if (data) { %>
+                    <div class="relative overflow-x-auto overflow-y-auto sm:rounded-lg w-screen mr-4 h-auto rounded-lg mt-2 h-[500px]">
+                        <table class="w-full text-sm text-left rtl:text-right text-gray-500 text-gray-400 h-auto rounded-lg">
+                            <thead class="text-xs text-gray-700 uppercase dark:text-gray-400">
+                                <tr>
+                                    <th scope="col" class="px-6 py-3 bg-gray-50 dark:bg-gray-800">
+                                        ID
+                                    </th>
+                                    <th scope="col" class="px-6 py-3 bg-gray-50 dark:bg-gray-800">
+                                        Almacen
+                                    </th>
+                                    <th scope="col" class="px-6 py-3 bg-gray-50 dark:bg-gray-800">
+                                        Vendedor
+                                    </th>
+                                    <th scope="col" class="px-6 py-3 bg-gray-50 dark:bg-gray-800">
+                                        Numero factura
+                                    </th>
+                                    <th scope="col" class="px-6 py-3 bg-gray-50 dark:bg-gray-800">
+                                        Fecha vencimiento
+                                    </th>
+                                    <th scope="col" class="px-6 py-3 bg-gray-50 dark:bg-gray-800">
+                                        Accion
+                                    </th>
+                                </tr>
+                            </thead>
+                            <tbody class="h-auto">
+                                    <% for(let i = 0; i < data.length; i++) {%>
+                                        <tr class="border-b border-gray-200 dark:border-gray-700">
+                                            <th id="" scope="row" class="px-6 py-4 font-medium text-gray-900 whitespace-nowrap bg-gray-50 dark:text-white dark:bg-gray-700">
+                                                <%= (i + 1) %>
+                                            </th>
+                                            <td id="Cantidad" class="px-6 py-4 bg-gray-700 overflow-x-hidden">
+                                                <%= data[i].Almacen %>
+                                            </td>
+                                            <td id="Cantidad" class="px-6 py-4 bg-gray-700 overflow-x-hidden">
+                                                <%= data[i].Vendedor %>
+                                            </td>
+                                            <td id="Cantidad" class="px-6 py-4 bg-gray-700 overflow-x-hidden">
+                                                <%= data[i].Numero_factura %>
+                                            </td>
+                                            <td id="Cantidad" class="px-6 py-4 bg-gray-700 overflow-x-hidden">
+                                                <%= data[i].Fecha_Vencimiento %>
+                                            </td>
+                                            <td class="px-6 py-4 bg-gray-700">
+                                                <a href="/facturacion/facturas-emitidas/descargar/<%= data[i].ID_factura %> " class="font-medium text-blue-600 dark:text-aquaPers hover:underline">Descargar</a>
+                                            </td>
+                                        </tr>
+                                    <% } %>
+                            </tbody>
+                        </table>
+                    </div>
+                <%  } else {%>
+                <div class="bg-gray2Pers h-52 rounded-[10px] my-7 flex flex-col pt-16 xl:h-80 xl:pt-32">
+                    <div class="text-center text-whiteSomke2 mb-8 xl:mb-20">
+                        <p>¡Todavía no has registrado pagos!.</p>
+                        <button class="bg-white mt-2 w-32 h-12 rounded-[5px] 
+                        text-[14px] text-black font-bold  md:h-10 ">Agregar pagos</button>
+                    </div>
+                    <div class="pt-1 px-4 text-gray-300 border-t border-t-gray-500 flex justify-between">
+                        <div class="text-[12px]">
+                            <button>Reinciar</button>
+                        </div>
+                        <div class="text-[12px]">
+                            <span class="border-r border-r-gray-500">Mostrando 1-1 De 1</span>
+                            <button>Agregar pagina</button>
+                        </div>
+                    </div>
+                </div>
+                <% } %>
+            </div>
+        </div>
+        
+    </main>
+    <script src="/JS/bancos.js"  type="module"></script>
+    <script src="/src/JS/utils/drop.js"></script>
+</body>
+</html>

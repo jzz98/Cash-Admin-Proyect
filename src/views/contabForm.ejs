@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="icon" href="../Fonts/DIY String Art ~ Fun & Easy Craft ~Nifty Thrifty DIYer.jpg" type="image/png">
+    <link rel="stylesheet" href="/output.css">
+    <title>Sign in</title>
+</head>
+<body class="m-0 p-0 font-cam overflow-hidden">
+    <div class="flex justify-center items-center bg-gray-100 p-0 w-full">
+        <div class="bg-gray-900 flex justify-center items-center h-screen w-full">
+            <!-- Left: Image -->
+            <div class="w-1/2 h-screen hidden lg:block">
+                <img src="../Fonts/top-viewtop-view-manager-employee-doing-teamwork-business-office-looking-charts-laptop-display.jpg" alt="Placeholder Image" class="object-cover w-full h-full">
+            </div>
+            <!-- Right: Login Form -->
+            <div class="lg:p-24 md:p-32 sm:16 p-4 w-full lg:w-1/2">
+                <div class="flex justify-center items-center relative h-[100px]">
+                    <img src="../Fonts/logoempty.png" alt="" class="w-[150px] absolute left-[75px]">
+                    <h1 class="md:font-bold text-3xl font-semibold text-white absolute bottom-[45px]">Cash <span class="text-aquaPers">Admin</span></h1>
+                </div>
+                <h1 class="text-2xl font-semibold mb-4 text-gray-200">Ingresa como contador</h1>
+                <form id="form" action="/soy-contador" method="POST">
+                    <!-- Username Input -->
+                    <div class="mb-4">
+                        <label for="Email" class="block text-gray-200">Correo electronico</label>
+                        <input placeholder="name@flowbite.com" type="text" id="Email" name="Email" class="text-black bg-whiteSmoke w-full border border-gray-300 rounded-md py-2 px-3 focus:outline-none focus:border-blue-500" autocomplete="off">
+                    </div>
+                    <!-- Password Input -->
+                    <div class="mb-4">
+                        <label for="password" class="block text-gray-200">Contraseña</label>
+                        <input type="text" id="password" name="Passwrd" class="text-black bg-whiteSmoke w-full border border-gray-300 rounded-md py-2 px-3 focus:outline-none focus:border-blue-500" autocomplete="off">
+                    </div>
+                    <div class="mb-4">
+                        <label for="password" class="block text-gray-200">Confirma tu contraseña</label>
+                        <input type="text" id="password2" class="text-black bg-whiteSmoke w-full border border-gray-300 rounded-md py-2 px-3 focus:outline-none focus:border-blue-500" autocomplete="off">
+                    </div>
+                    <div class="flex justify-stretch">
+                        <div class="mb-4 w-full mr-2">
+                            <label for="Nombre" class="block text-gray-200">Nombre</label>
+                            <input type="text" id="Name" name="Nombre" class="text-black bg-whiteSmoke w-full border border-gray-300 rounded-md py-2 px-3 focus:outline-none focus:border-blue-500" autocomplete="off">
+                        </div>
+                        <div class="mb-4 w-full ml-2">
+                            <label for="password" class="block text-gray-200">Apellido</label>
+                            <input type="text" id="Apellido" class="text-black bg-whiteSmoke w-full border border-gray-300 rounded-md py-2 px-3 focus:outline-none focus:border-blue-500" autocomplete="off">
+                        </div>
+                    </div>
+                    <div class="flex justify-stretch">
+                        <div class="mb-4 w-full mr-2">
+                            <label for="telefono" class="block text-gray-200">Telefono</label>
+                            <input pattern="[0-9]{3}-[0-9]{3}-[0-9]{4}" type="tel" id="Telefono" name="Telefono" class="text-black bg-whiteSmoke w-full border border-gray-300 rounded-md py-2 px-3 focus:outline-none focus:border-blue-500" autocomplete="off">
+                        </div>
+                        <div class="mb-4 w-full ml-2">
+                            <label for="Empresa" class="block text-gray-200">Nombre de tu empresa</label>
+                            <input type="text" name="Nombre_empresa" id="company" class="text-black bg-whiteSmoke w-full border border-gray-300 rounded-md py-2 px-3 focus:outline-none focus:border-blue-500" autocomplete="off">
+                        </div>
+                    </div>
+                    <div class="container-error flex justify-center text-red-800">
+                        <% if(error) {%>
+                            <span class="text-red-800">
+                                <%= error %>
+                            </span>
+                        <% } %>
+                    </div>
+                    <!-- Remember Me Checkbox -->
+                    <div class="mb-4 flex items-center">
+                        <input type="checkbox" id="checkbox" class="text-red-500">
+                        <label for="remember" class="text-white ml-2">Ver contraseña</label>
+                    </div>
+                    <!-- Forgot Password Link -->
+                    <div class="mb-6 text-blue-500">
+                        <a href="#" class="hover:underline text-white">Forgot Password?</a>
+                    </div>
+                    <!-- Login Button -->
+                    <button id="btn" type="submit" class="bg-aquaPers text-white font-semibold rounded-md py-2 px-4 w-full">Login</button>
+                </form>
+            </div>
+        </div>
+    </div>
+    <script type="module" src="../JS/contabForm.js"></script>
+</body>
+</html>

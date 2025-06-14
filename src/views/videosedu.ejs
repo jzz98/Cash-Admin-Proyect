@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <link rel="stylesheet" href="/fontawesome-free-5.15.4-web/css/all.min.css" />
+  <link rel="stylesheet" href="/output.css" />
+  <title>Videos Educativos</title>
+</head>
+<body class="font-cam bg-whiteSmoke">
+
+  <%- include('partials/header') %>
+  <%- include('partials/sidebar') %>
+
+  <main class="xl:ml-64 min-h-screen p-4">
+    <section class="bg-white rounded-xl shadow-md p-6">
+      <h3 class="text-3xl font-bold text-gray2Pers mb-2 flex items-center gap-2">
+        <i class="fas fa-video text-gray-500"></i> Videos Educativos
+      </h3>
+      <p class="text-gray-600 text-base mb-6">
+        Aprende más sobre la facturación electrónica y cómo usar nuestro sistema.
+      </p>
+
+      <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
+        <!-- Video 1 -->
+        <div class="bg-white rounded-lg shadow hover:shadow-lg transition overflow-hidden">
+          <div class="aspect-w-16 aspect-h-9">
+            <video src="../Fonts/Bienvenido a Cash Admin!! - Google Chrome 2025-03-25 22-48-30.mp4" controls class="w-full h-full object-cover rounded-t-lg"></video>
+          </div>
+          <div class="p-4">
+            <h4 class="text-lg font-semibold text-gray2Pers">Bienvenido a Cash Admin!!!</h4>
+            <p class="text-sm text-gray-500">Cómo usar Cash Admin.</p>
+          </div>
+        </div>
+
+        <!-- Video 2 -->
+        <div class="bg-white rounded-lg shadow hover:shadow-lg transition overflow-hidden">
+          <div class="aspect-w-16 aspect-h-9">
+            <video src="../Fonts/¿Sabes qué es la facturación electrónica y para qué sirve_ 🍎💻.mp4" controls class="w-full h-full object-cover rounded-t-lg"></video>
+          </div>
+          <div class="p-4">
+            <h4 class="text-lg font-semibold text-gray2Pers">¿Qué es la facturación electrónica?</h4>
+            <p class="text-sm text-gray-500">Aprende qué es la facturación electrónica.</p>
+          </div>
+        </div>
+
+        <!-- Video 3 -->
+        <div class="bg-white rounded-lg shadow hover:shadow-lg transition overflow-hidden">
+          <div class="aspect-w-16 aspect-h-9">
+            <video src="../Fonts/💥BITCOIN😱TODO el mundo cree que SUBE… ¿pero es una TRAMPA_⚠🤔  ✅Proyección y Análisis de BITCOIN Hoy✅.mp4" controls class="w-full h-full object-cover rounded-t-lg"></video>
+          </div>
+          <div class="p-4">
+            <h4 class="text-lg font-semibold text-gray2Pers">¿Mundo de las criptomonedas?</h4>
+            <p class="text-sm text-gray-500">Aprende más sobre cripto.</p>
+          </div>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <script src="/src/JS/utils/drop.js"></script>
+</body>
+</html>

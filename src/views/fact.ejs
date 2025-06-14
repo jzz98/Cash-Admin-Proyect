@@ -1,0 +1,263 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="../fontawesome-free-5.15.4-web/css/all.min.css">
+    <link rel="stylesheet" href="/output.css">
+    <title>Nueva factura</title>
+</head>
+<body class="font-cam">
+    <%- include('partials/header') %>
+    <%- include('partials/sidebar') %>
+    <main class="p-3 bg-whiteSmoke h-auto xl:ml-64 ">
+        <div class="flex pb-10">
+            <h2 class="text-2xl font-bold text-gray2Pers">Nueva Factura</h2>
+        </div>
+        <form method="post" action="/facturacion/factura-nueva" id="form" enctype="multipart/form-data">
+            <div class="flex border-[3px] rounded-[1px] p-3 h-32">
+                <div class="flex flex-col justify-center px-6">
+                    <label for="" class="text-[14px] text-gray2Pers xl:font-bold">Almacen</label>
+                    <input id="input1" type="text" name="Almacen" placeholder="Principal" class="text-black p-2 bg-gray-200 focus-visible:border-aquaPers checked:border-aquaPers hover:border-aquaPers w-[100px] h-6 focus:outline-none border-[1px] rounded-[5px] border-grayPers xl:w-36" required>
+                </div>
+                <div class="flex flex-col justify-center px-6">
+                    <label for=""  class="text-[14px] text-gray2Pers xl:font-bold">Lista de precios</label>
+                    <input id="input1"  type="text" placeholder="General" class="text-black p-2 bg-gray-200 focus-visible:border-aquaPers checked:border-aquaPers hover:border-aquaPers w-[100px] h-6 focus:outline-none border-[1px] rounded-[5px] border-grayPers xl:w-36">
+                </div> <div class="flex flex-col justify-center px-6">
+                    <label for=""  class="text-[14px] text-gray2Pers xl:font-bold">Vendedor</label>
+                    <input id="input1" type="text" name="Vendedor" placeholder="Buscar..." class="text-black p-2 bg-gray-200 focus-visible:border-aquaPers hover:border-aquaPers w-[100px] h-6 focus:outline-none border-[1px] rounded-[5px] border-grayPers xl:w-36" required>
+                </div>
+            </div>
+    
+            <div class="h-1/3 bg-white border rounded-r p-4 my-10  overflow-hidden">
+                <div class="flex justify-between ">
+                        <div class="break logouser mr-2 xl:mr-0 flex flex-col bg-whiteSomke2 p-2 pb-2 w-full md:w-42 h-auto text-center border hover:cursor-pointer hover:bg-whiteSmoke group md:w-1/3 ">
+                            <span class="text-grayPers text-[20px] font-bold group-hover:text-gray-400 ">Utilizar mi logo</span>
+                            <span class="text-grayPers text-center group-hover:text-gray-400">178 x 51 pixeles</span>
+                            <input type="file" name="Logo" id="fileinput" class="hidden r1" multiple accept="image/*">
+                            <div class="">
+                                <p id="output" class="text-[12px]"></p>
+                            </div>
+                        </div>
+                        <div id="bg" class="bg-cover bg-no-repeat">
+                        </div>
+                        <div class="relative">
+                            <i id="trash1" class="fas fa-trash hidden  text-gray-400 hover:text-red-700 hover:cursor-pointer mx-2 static xl:absolute md:absolute xl:right-[10pc]"></i>
+                        </div>
+                        <h1 id="usrname" class="text-2xl text-gray2Pers"><%= name  %></h1>
+                    <div class="relative -right-8 flex flex-col mr-5 ml-3">
+                        <span id="btn" class="relative flex hover:cursor-pointer text-[12px] font-bold text-gray2Pers">Credito fiscal (01)<i class="fas fa-caret-down mt-1 ml-1"></i></span></span>
+                        <div id="lap" class="hidden flex-col p-3 rounded-[5px] absolute top-16 right-3 border-grayPers border bg-white  w-56">
+                            <button class="text-gray-600 hover:bg-grayPers my-1  font-bold text-[12px] p-1" id="btn2">Comprobante para exportación (16)</button>
+                            <button class="text-gray-600 hover:bg-grayPers my-1  font-bold text-[12px] p-1" id="btn3">Consumo (2)</button>
+                            <button class="text-gray-600 hover:bg-grayPers my-1  font-bold text-[12px] p-1" id="btn4">Credito fiscal (01)</button>
+                            <button class="text-gray-600 hover:bg-grayPers my-1  font-bold text-[12px] p-1" id="btn5">Gubernamentales (15)</button>
+                            <button class="text-gray-600 hover:bg-grayPers my-1  font-bold text-[12px] p-1" id="btn6">Régimen especial de tributación (14)</button>
+                        </div>
+                        <div class="flex">
+                            <h1 class="text-2xl font-bold mt-1 text-gray2Pers">NFC</h1>
+                            <input type="text" name="Numero_factura" value="B0100000001" id="NFC" class="bg-gray-200 focus-visible:border-aquaPers h-10 w-28 border-[2px] mx-2 focus:outline-none ">
+                        </div>
+                    </div>
+                </div>
+                <div class="flex justify-center my-10 border-t pt-5 xl:flex-col xl:my-20 xl:align-middle">
+                    <div class="flex flex-col mx-4  xl:justify-center">
+                        <span class=" text-[12px] font-bold md:text-sm text-gray2Pers">Contacto</span>
+                        <input required type="text" placeholder="Buscar..." class="text-black pl-2 focus-visible:border-aquaPers bg-gray-200 placeholder:text-[14px] border-[1px] rounded-lg h-5 focus:outline-none md:h-8 hover:border-aquaPers">
+                        <span class="text-[12px] font-bold mt-4 md:text-sm text-gray2Pers">RNC o Cedula</span>
+                        <input oninput="this.value = this.value.replace(/[^0-9-]/g, '')" inputmode="numeric" required type="text" class="text-black pl-2 focus-visible:border-aquaPers border-[1px] rounded-lg h-5  bg-gray-200  focus:outline-none md:h-8 hover:border-aquaPers">
+                        <span class="text-[12px] font-bold mt-4 md:text-sm text-gray2Pers">Telefono</span>
+                        <input oninput="this.value = this.value.replace(/[^0-9-]/g, '')" inputmode="numeric" id="input-tel" required type="text" class="text-black pl-2 focus-visible:border-aquaPers border-[1px] rounded-lg h-5  bg-gray-200 focus:outline-none md:h-8 hover:border-aquaPers">
+                    </div>
+                    <div class="flex flex-col mx-4  xl:justify-center">
+                        <span class=" text-[12px] font-bold md:text-sm text-gray2Pers">Fecha</span>
+                        <input required type="date" name="Fecha_emision" placeholder="Buscar..." class="text-black pl-2 focus-visible:border-aquaPers  bg-gray-200 placeholder:text-[14px] border-[1px] rounded-lg h-5 focus:outline-none md:h-8 hover:border-aquaPers">
+                        <span class="text-[12px] font-bold mt-4 md:text-sm text-gray2Pers">Plazo de pago</span>
+                        <input required type="date" name="Plazo_pago" placeholder="Seleccionar" class="text-black pl-2 focus-visible:border-aquaPers  bg-gray-200 placeholder:text-[14px] border-[1px] rounded-lg h-5 focus:outline-none md:h-8 hover:border-aquaPers">
+                        <span class="text-[12px] font-bold mt-4 md:text-sm text-gray2Pers">Vencimiento</span>
+                        <input required type="date" name="Fecha_Vencimiento" placeholder="" class="text-black pl-2 focus-visible:border-aquaPers bg-gray-200 placeholder:text-[14px] border-[1px] rounded-lg h-5 focus:outline-none md:h-8 hover:border-aquaPers">
+                    </div>
+                </div>
+                <div class="flex flex-col justify-center my-10 border-t pt-5 xl:flex-col xl:my-20 xl:align-middle">
+                    <div class="flex flex-col mx-4 xl:justify-center">
+                        <span class="text-[12px] font-bold md:text-sm text-gray2Pers">Producto</span>
+                        <select id="simple-search-3" required class="text-black pl-2 bg-gray-200 focus-visible:border-aquaPers placeholder:text-[14px] border-[1px] rounded-lg h-5 focus:outline-none md:h-8 hover:border-aquaPers">
+                        </select>
+                        <span class="text-[12px] font-bold mt-4 md:text-sm text-gray2Pers">Referenica</span>
+                        <input required type="text" placeholder="Referencica" class="text-black pl-2 focus-visible:border-aquaPers bg-gray-200 placeholder:text-[14px] border-[1px] rounded-lg h-5 focus:outline-none md:h-8 hover:border-aquaPers">
+                        <span class="text-[12px] font-bold mt-4 md:text-sm text-gray2Pers">Precio</span>
+                        <input oninput="this.value = this.value.replace(/[^0-9-]/g, '')" inputmode="numeric" required type="text" placeholder="Precio" class="text-black precio pl-2 focus-visible:border-aquaPers bg-gray-200 placeholder:text-[14px] border-[1px] rounded-lg h-5 focus:outline-none md:h-8 hover:border-aquaPers">
+                    </div>
+                    <div class="flex flex-col mx-4 xl:justify-center">
+                        <span class="text-[12px] font-bold md:text-sm text-gray2Pers">Desc %</span>
+                        <input oninput="this.value = this.value.replace(/[^0-9]/g, '')" inputmode="numeric" name="Descuento" type="text" placeholder="Desc" class="text-black Descuento pl-2 focus-visible:border-aquaPers bg-gray-200 placeholder:text-[14px] border-[1px] rounded-lg h-5 focus:outline-none md:h-8 hover:border-aquaPers">
+                        <span class="text-[12px] font-bold mt-4 md:text-sm text-gray2Pers">Impuesto</span>
+                        <input required name="Impuestos" type="text" placeholder="Impuesto" class="text-black pl-2 focus-visible:border-aquaPers bg-gray-200 placeholder:text-[14px] border-[1px] rounded-lg h-5 focus:outline-none md:h-8 hover:border-aquaPers">
+                    </div>
+                    <div class="flex flex-col mx-4 xl:justify-center">
+                        <span class="text-[12px] font-bold md:text-sm text-gray2Pers">Cantidad</span>
+                        <input oninput="this.value = this.value.replace(/[^0-9-]/g, '')" inputmode="numeric" id="Cantidad" name="Cantidad" required type="text" placeholder="Cantidad" class="text-black pl-2 focus-visible:border-aquaPers bg-gray-200 placeholder:text-[14px] border-[1px] rounded-lg h-5 focus:outline-none md:h-8 hover:border-aquaPers">
+                        <span class="text-[12px] font-bold md:text-sm text-gray2Pers">Descripción</span>
+                        <input type="text" name="" placeholder="Descripción" class="text-black bg-gray-200 pl-2 focus-visible:border-aquaPers bg-gray-200 placeholder:text-[14px] border-[1px] rounded-lg h-5 focus:outline-none md:h-8 hover:border-aquaPers">
+                    </div>
+                    <div class="flex justify-between pt-2">
+                        <div class="mx-4" id="total">
+                            <span class="text-[12px] font-bold md:text-sm text-gray2Pers">Total</span>
+                            <span class="totalR text-gray2Pers md:text-sm" >RD$ 0.00</span>
+                        </div> 
+                        <div>
+                            <button type="button" class="Calcular mr-4 inline-flex items-center px-3 py-1 text-sm font-medium text-center text-white rounded-lg  focus:outline-none dark:bg-aquaPers">
+                                Calcular
+                            </button>
+                        </div>
+                    </div>
+                </div>  
+                <div class="NlineaWarraper"></div>         
+                <div class="border-t">
+                    <button type="button" id="nuevaLineaBtn" class="border-[1px] border-aquaPers my-4 w-32 h-9 rounded-[6px] font-bold text-aquaPers"><i class="fas fa-plus mr-1 text-aquaPers"></i>Agregar linea</button>
+                    <i id="trash2" class="fas fa-trash text-gray-400 hover:text-red-700 hover:cursor-pointer mx-2 relative -top-2 hidden"></i>
+                </div>
+                <div class="flex my-2 ">
+                    <div class="flex flex-col md:flex-row xl:justify-center xl:align-middle xl:w-2/4 xl:flex-col relative">
+                        <div class="flex mt-4">
+                            <div class="flex flex-col my-2 xl:mr-8 -mt-5">
+                                <span class="text-gray2Pers xl:pl-6 xl:pt-1 text-lg font-semibold">Retencion</span>
+                                <span class="text-gray2Pers xl:pl-6 xl:pt-1">Subtotal</span>
+                                <span class="text-gray2Pers xl:pl-6 xl:pt-1">Descuento</span>
+                                <span class="text-gray2Pers xl:pl-6 xl:pt-1">Subtotal</span>
+                            </div>
+                            <div class="flex flex-col -mt-5">
+                                <span class="text-gray2Pers xl:pl-6 xl:pt-1 text-lg font-semibold">Conduce</span>
+                                <span class="text-gray2Pers xl:pl-6 xl:pt-1">RD$ 0.00</span>
+                                <span class="text-gray2Pers xl:pl-6 xl:pt-1">-RD$ 0.00</span>   
+                                <span class="text-gray2Pers xl:pl-6 xl:pt-1">RD$ 0.00</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="flex border-t pl-12 align-middle">
+                    <span class="font-bold text-gray2Pers mx-3">Total</span>
+                    <span id="totalGeneral" class="font-bold text-gray2Pers">RD$ 0.00</span>
+                    <input type="text" name="Total" id="totalInput" class="hidden">
+                </div>
+                <div class="my-10">
+                    <div class="">
+                        <div class="flex justify-between">
+                            <span class="text-gray2Pers font-bold">Terminos y condiciones</span>
+                            <span class="mx-8 text-gray2Pers font-bold">Notas</span>
+                        </div>
+                        <div class="flex justify-between">
+                            <textarea required name="Terminos_y_condiciones" id=""  class="text-black bg-gray-200 focus-visible:border-aquaPers resize-none w-screen h-32 border-[2px] border-grayPers mr-3 rounded-[10px] pl-1 focus:outline-none hover:border-aquaPers" placeholder="Visible en la impresion del documento"></textarea>
+                            <textarea name="Nota" id="" class="text-black bg-gray-200 focus-visible:border-aquaPers resize-none border-[2px] border-grayPers rounded-[10px] focus:outline-none pl-1 hover:border-aquaPers"></textarea>
+                        </div>
+                    </div>
+                </div>
+                <div class="flex flex-col">
+                    <span class="text-gray2Pers font-bold">Pie de factura</span>
+                    <textarea name="Pie_de_factrua" placeholder="Visible en la impresion del documento" class="text-black bg-gray-200 focus-visible:border-aquaPers resize-none border-[2px] border-grayPers rounded-[10px] focus:outline-none pl-1 hover:border-aquaPers"></textarea>
+                </div>
+            </div>
+            <div class="bg-white my-6 flex justify-between p-4 rounded-sm">
+                <div>
+                    <span class="text-[20px] font-bold text-gray2Pers">Pago recibido</span>
+                    <p class="text-[14px] text-gray2Pers">Si te hicieron un pago asociado a esta venta puedes hacer aqui su registro</p>
+                </div>
+                <div>
+                    <button class="flexx text-aquaPers flex"><i class="fas fa-database mx-2 mt-1"></i>Agregar pago</button>
+                </div>
+            </div>
+            <div class="flex">
+                <div class="mr-3">
+                    <div class="bg-aquaPers w-9 h-8 text-center rounded-[50px] p-2" >U</div>
+                    <span class="text-[14px]">Usuario</span>
+                </div>
+                <div class="flex flex-col">
+                    <textarea name="Comentarios" class="text-black bg-gray-200 focus-visible:border-aquaPers resize-none border-[2px] border-grayPers rounded-[10px] focus:outline-none pl-1 hover:border-aquaPers"></textarea>
+                    <span class="text-[14px] text-gray2Pers">Utiliza los comentarios para agregar informacion importante. No son visibles en la impresion</span>
+                </div>
+            </div>
+            <div class="my-10">
+                <div class="flex justify-end">
+                    <button  type="button" class="border-2  bg-white font-bold text-[14px] border-grayPers mx-4 w-32 rounded-lg md:h-10">Cancelar</button>
+                    <button id="btnSend" type="submit"  class="bg-aquaPers mr-1 w-32 rounded-lg text-[14px] text-white font-bold  md:h-10">Guardar</button>
+                </div>
+            </div>
+        </form>
+        <div class="hidden container mx-auto py-8 max-w-[50pc] absolute top-5 xl:right-[20%] right-1" id="user-settings">
+            <div class="bg-gray-900 shadow-lg rounded-lg p-6 md:p-8 flex flex-col md:flex-row">
+              <div class="w-full md:w-3/4 pr-0 md:pr-8 mb-6 md:mb-0">
+                <h1 class="text-2xl font-bold mb-4 text-center">Configuraciones de cuenta</h1>
+                <form action="/facturacion/facturacion-personal/update" method="POST" id="form">
+                  <div class="mb-42 flex justify-center align-middle w-full flex">
+                    <div>
+                      <% if(avatar) {%> 
+                        <img
+                        id="profile-img"
+                        class="w-[110px] h-[100px] rounded-[500px]"
+                        src="<%= avatar %>"
+                        alt="Large avatar"/>
+                      <% } else{%> 
+                        <img 
+                        id="profile-img"
+                        class="w-[110px] h-[100px] rounded-[500px]"
+                        src="../user-configs/user-avatar/userlogo.png"
+                        alt="Large avatar" />
+                        <% } %>
+                    </div>
+                  </div>
+                  <div class="text-center mb-4">
+                    <a href="javascript:void(0);" class="text-aquaPers" id="Cambiar">Cambiar foto de perfil</a>
+                    <input type="file" class="hidden" id="file-input" enctype="multipart/form-data">
+                  </div>               
+                  <div class="mb-4">
+                    <label for="name" class="block font-medium text-gray-200 mb-2">Nombre</label>
+                    <input type="text" id="name" name="Nombre_usuario" value="<%= data[0].Nombre_usuario  %>" class="w-full border-gray-300 rounded-md shadow-sm focus:outline-none bg-gray-300 text-black px-3 py-2">
+                  </div>
+                  <div class="mb-4">
+                    <label for="email" class="block font-medium text-gray-200 mb-2">Email</label>
+                    <input type="email" id="email" name="Email" value="<%= data[0].Email  %>" class="w-full border-gray-300 rounded-md shadow-sm focus:outline-none bg-gray-300 text-black px-3 py-2 mb-2">
+                  </div>
+                  <div class="mb-4">
+                    <label for="current-password" class="block font-medium text-gray-200 mb-2">Contraseña actual</label>
+                    <input type="password" id="current-password" value="<%= data[0].Passwrd  %>" placeholder="Enter your current password" class="w-full border-gray-300 rounded-md shadow-sm focus:outline-none bg-gray-300 text-black px-3 py-2">
+                  
+                  </div>
+                  <div class="mb-4">
+                    <label for="new-password" class="block font-medium text-gray-200 mb-2">Nueva contraseña</label>
+                    <input type="password" id="new-password" name="Passwrd" placeholder="Enter a new password" class="w-full border-gray-300 rounded-md shadow-sm focus:outline-none bg-gray-300 text-black px-3 py-2">
+                  </div>
+                  <div class="flex justify-between items-center mb-4">
+                    <a href="#" class="text-aquaPers font-medium">Ver contraseña</a>
+                    <button id="btn-submit" type="submit" class="bg-aquaPers text-white font-medium py-2 px-4 rounded-md focus:outline-none focus:ring focus:ring-blue-200 focus:ring-opacity-50">Save Changes</button>
+                  </div>
+                </form>
+              </div>
+              <div class="w-full md:w-1/4 border-t md:border-t-0 md:border-l border-gray-300 pt-6 md:pt-0 md:pl-8">
+                <h2 class="text-lg font-bold mb-4">Configuraciones avanzadas</h2>
+                <div class="flex flex-col justify-center">
+                  <div>
+                    <button id="btn-logout" class="text-red-800 font-medium">Log Out</button>
+                  </div>
+                  <div>
+                    <button class="text-red-700 hover:text-red-600 font-medium" id="delete-account">Delete Account</button>
+                  </div>
+                </div>
+                <h2 class="mt-10 text-lg font-bold">Configuraciones de cuenta</h2>
+                <div class="my-4">
+                  <a href="javascript:void(0);" id="cambiar-nombre" class="text-aquaPers font-medium">Cambiar nombre</a>
+                </div>
+                <div class="my-4">
+                  <a href="javascript:void(0);" id="cambiar-email" class="text-aquaPers font-medium">Cambiar correo</a>
+                </div>
+                <div class="my-4">
+                  <a href="javascript:void(0);" id="cambiar-password" class="text-aquaPers font-medium">Cambiar contraseña</a>
+                </div>
+              </div>
+            </div>
+        </div>
+    </main>
+    <script src="https://cdn.jsdelivr.net/gh/cosmogicofficial/quantumalert@latest/minfile/quantumalert.js" charset="utf-8" defer async></script>
+    <script src="../JS/fact.js" type="module"></script>
+
+</body>
+</html>

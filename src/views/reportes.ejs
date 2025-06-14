@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="../fontawesome-free-5.15.4-web/css/all.min.css">
+    <link rel="stylesheet" href="/output.css">
+    <title>Nueva factura</title>
+</head>
+<body class="font-cam">
+    <%- include('partials/header') %>
+    <%- include('partials/sidebar') %>
+    <main class="p-2 bg-whiteSmoke h-screen xl:ml-64 ">
+        <div class="flex justify-between mb-2">
+            <div>
+                <h1 class="text-3xl text-gray2Pers font-semibold">Reportes de ventas</h1>
+                <p class="text-gray2Pers">Monitorea la distribución de tus ventas y obtén información para gestionar tus operaciones comerciales.</p>
+            </div>
+            <div>
+                <a href="" class="text-aquaPers font-bold flex">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"><path fill="currentColor" d="M12.028 17.23q.332 0 .56-.228t.228-.56t-.23-.56q-.228-.228-.56-.228t-.56.229t-.227.56q0 .332.228.56q.23.228.561.228m-.517-3.312h.966q.038-.652.245-1.06q.207-.407.851-1.04q.67-.669.996-1.199t.327-1.226q0-1.182-.83-1.884q-.831-.702-1.966-.702q-1.079 0-1.832.586q-.753.587-1.103 1.348l.92.381q.24-.546.687-.965q.447-.42 1.29-.42q.972 0 1.42.534q.449.534.449 1.174q0 .52-.281.928q-.28.409-.73.822q-.87.802-1.14 1.36t-.269 1.363M12.003 21q-1.866 0-3.51-.708q-1.643-.709-2.859-1.924t-1.925-2.856T3 12.003t.709-3.51Q4.417 6.85 5.63 5.634t2.857-1.925T11.997 3t3.51.709q1.643.708 2.859 1.922t1.925 2.857t.709 3.509t-.708 3.51t-1.924 2.859t-2.856 1.925t-3.509.709M12 20q3.35 0 5.675-2.325T20 12t-2.325-5.675T12 4T6.325 6.325T4 12t2.325 5.675T12 20m0-8"/></svg>
+                    Ayuda
+                </a>
+            </div>
+        </div>
+        <div>
+            <h3 class="text-gray2Pers text-lg font-semibold pl-2 mt-4">Clasificacion por categoria</h3>
+        </div>
+        <div class="rounded-sm pt-4 overflow-hidden flex">
+            <div class="max-w-sm mx-2 p-3 py-4 bg-white border border-gray-200 rounded-lg shadow-sm dark:bg-gray-800 dark:border-gray-700">
+                <svg xmlns="http://www.w3.org/2000/svg" width="35" height="35" viewBox="0 0 24 24"><path fill="currentColor" d="M11.485 18.616h.98v-1.174q1.077-.09 2.064-.773q.987-.682.987-2.119q0-1.05-.639-1.79t-2.439-1.39q-1.653-.578-2.113-.991T9.865 9.2t.598-1.275t1.587-.51q.762 0 1.27.35t.822.885l.87-.342Q14.66 7.587 13.98 7.1t-1.464-.542V5.385h-.981v1.173q-1.308.217-1.98.975T8.886 9.2q0 1.079.678 1.727t2.287 1.23q1.614.595 2.168 1.074t.555 1.319q0 1.056-.77 1.52q-.77.465-1.653.465q-.863 0-1.559-.503q-.695-.503-1.11-1.432l-.881.38q.427 1.028 1.145 1.602t1.74.81zM12 21q-1.864 0-3.506-.71q-1.642-.711-2.857-1.926q-1.216-1.216-1.926-2.858Q3 13.864 3 12t.71-3.506t1.927-2.857T8.494 3.71Q10.137 3 12 3t3.506.71q1.642.711 2.857 1.927q1.216 1.215 1.926 2.857Q21 10.137 21 12t-.71 3.506q-.711 1.642-1.926 2.857q-1.216 1.216-2.858 1.926Q13.864 21 12 21"/></svg>
+                <a href="#">
+                    <h5 class="mb-2 text-2xl font-semibold tracking-tight text-gray-900 dark:text-white pl-2">Reportes generales</h5>
+                </a>
+                <p class="mb-3 font-normal text-gray-500 dark:text-gray-400 pl-2">En reportes generales podra ver todo lo relacionado con los ingresos de tu empresa</p>
+                <a href="/facturacion/reportes/ventas-generales" class="inline-flex font-medium items-center text-aquaPers  hover:underline pl-2">
+                    Ver reporte
+                    <svg class="w-3 h-3 ms-2.5 rtl:rotate-[270deg]" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 18 18">
+                        <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 11v4.833A1.166 1.166 0 0 1 13.833 17H2.167A1.167 1.167 0 0 1 1 15.833V4.167A1.166 1.166 0 0 1 2.167 3h4.618m4.447-2H17v5.768M9.111 8.889l7.778-7.778"/>
+                    </svg>
+                </a>
+            </div>
+  
+        </div>
+    </main>
+    
+    <script src="../JS/utils/drop.js" type="module"></script>
+    <script src="/src/JS/utils/drop.js"></script>
+</body>
+</html> 

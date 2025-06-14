@@ -1,0 +1,51 @@
+<nav class="xl:sticky xl:top-0 h-1/6 p-2 pr-0 bg-gray-900 text-[20px] border-b border-gray-500 z-50">
+    <div class="flex overflow-hidden">
+        <ul class="flex text-[1.3rem] md:w-3/5 xl:w-auto">
+            <li class="mx-3 xl:hidden"><i class="fas fa-bars hover:cursor-pointer" ></i></li>
+            <li class="mx-4 md:font-bold xl:w-[300px] text-white">Cash <span class="text-aquaPers">Admin</span></li>
+        </ul>
+        <div class="hidden xl:flex justify-between w-4/5">
+            <div class="">
+                <form class="flex items-center max-w-sm mx-auto">   
+                    <label for="simple-search" class="sr-only">Search</label>
+                    <div class="relative w-full">
+                        <div class="absolute inset-y-0 start-0 flex items-center ps-3 pointer-events-none">
+                            <svg class="w-4 h-4 text-gray-500 dark:text-gray-400" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 18 20">
+                                <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 5v10M3 5a2 2 0 1 0 0-4 2 2 0 0 0 0 4Zm0 10a2 2 0 1 0 0 4 2 2 0 0 0 0-4Zm12 0a2 2 0 1 0 0 4 2 2 0 0 0 0-4Zm0 0V6a3 3 0 0 0-3-3H9m1.5-2-2 2 2 2"/>
+                            </svg>
+                        </div>
+                        <input type="text" autocomplete="off" id="simple-search" class="h-8 bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:outline-none focus:border-blue-500 block w-full ps-10 p-2.5  dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" placeholder="Buscar en la pagina..." />
+                    </div>
+                    <button type="submit" class="p-2.5 ms-2 text-sm font-medium text-white bg-aquaPers rounded-lg border border-none focus:outline-none  dark:bg-aquaPers ">
+                        <svg class="w-3 h-3" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 20 20">
+                            <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="m19 19-4-4m0-7A7 7 0 1 1 1 8a7 7 0 0 1 14 0Z"/>
+                        </svg>
+                        <span class="sr-only">Search</span>
+                    </button>
+                </form>
+                <ul id="box-search" class="absolute bg-gray2Pers pr-[30px] rounded-[10px] p-4 hidden h-[200px] overflow-scroll">
+                    <li class="text-lg mb-2 font-sm hover:bg-gray-800 pr-10 rounded-[10px]"><a href="/facturacion/ingresos/registrar-ingresos"><i class="fas fa-search text-sm mx-2"></i>Ingresos</a></li>
+                    <li class="text-lg mb-2 font-sm hover:bg-gray-800 pr-10 rounded-[10px]"><a href="/facturacion/reportes"><i class="fas fa-search text-sm mx-2"></i>Reportes</a></li>
+                    <li class="text-lg mb-2 font-sm hover:bg-gray-800 pr-10 rounded-[10px]"><a href="/facturacion/docs"><i class="fas fa-search text-sm mx-2"></i>Documentos</a></li>
+                    <li class="text-lg mb-2 font-sm hover:bg-gray-800 pr-10 rounded-[10px]"><a href="/facturacion/noticias"><i class="fas fa-search text-sm mx-2"></i>Noticias</a></li>
+                    <li class="text-lg mb-2 font-sm hover:bg-gray-800 pr-10 rounded-[10px]"><a href="/facturacion/inventario"><i class="fas fa-search text-sm mx-2"></i>Inventario</a></li>
+                </ul>
+            </div>
+            <ul class="flex mt-1">
+                <li class="mx-1 mt-1 text-[16px] pl-[50pc]">
+                    <a href="/facturacion/docs">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"><path fill="white" d="M14.6 8.075q0-1.075-.712-1.725T12 5.7q-.725 0-1.312.313t-1.013.912q-.4.575-1.088.663T7.4 7.225q-.35-.325-.387-.8t.237-.9q.8-1.2 2.038-1.862T12 3q2.425 0 3.938 1.375t1.512 3.6q0 1.125-.475 2.025t-1.75 2.125q-.925.875-1.25 1.363T13.55 14.6q-.1.6-.513 1t-.987.4t-.987-.387t-.413-.963q0-.975.425-1.787T12.5 11.15q1.275-1.125 1.688-1.737t.412-1.338M12 22q-.825 0-1.412-.587T10 20t.588-1.412T12 18t1.413.588T14 20t-.587 1.413T12 22"/></svg>            </li>
+                    </a>
+                <li class="mx-1 mt-1 text-[16px] ">
+                    <a id="notifications">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"><path fill="currentColor" d="M11.997 21.385q-.668 0-1.14-.475q-.472-.474-.472-1.14h3.23q0 .67-.475 1.143q-.476.472-1.143.472M5 18.769v-1h1.616V9.846q0-1.96 1.24-3.447T11 4.546V3h2v1.075q-.442.616-.683 1.342q-.24.727-.24 1.487q0 1.998 1.395 3.422t3.374 1.463h.27q.134 0 .268-.02v6H19v1zm11.964-9.365q-1.041 0-1.772-.729t-.73-1.769t.728-1.772t1.77-.73t1.77.728t.732 1.77t-.729 1.771t-1.77.73"/></svg>                
+
+                    </a>
+                </li>
+            </ul>
+            <div class="mt-1 h-7 w-7 rounded-[50%] xl:mx-5 text-center hover:cursor-pointer">
+                <svg id="logusr" xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 24 24"><path fill="currentColor" d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10s10-4.48 10-10S17.52 2 12 2m0 4c1.93 0 3.5 1.57 3.5 3.5S13.93 13 12 13s-3.5-1.57-3.5-3.5S10.07 6 12 6m0 14c-2.03 0-4.43-.82-6.14-2.88a9.95 9.95 0 0 1 12.28 0C16.43 19.18 14.03 20 12 20"/></svg>
+            </div>
+        </div>
+    </div>
+</nav>

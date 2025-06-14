@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="../fontawesome-free-5.15.4-web/css/all.min.css">
+    <link rel="stylesheet" href="/output.css">
+    <title>Nueva factura</title>
+</head>
+<body class="font-cam">
+    <%- include('partials/header') %>
+    <%- include('partials/sidebar') %>
+    <main class="p-3 bg-whiteSmoke h-screen xl:ml-64 ">
+        <div class="border rounded-r p-4 my-10  overflow-hidden bg-white">
+            <div class="flex justify-between">
+                <div>
+                    <h1 class="text-[18px] font-bold xl:text-[30px] xl:font-semibold text-gray2Pers">Pagos recurrentes</h1>
+                    <p class="hidden xl:flex text-gray2Pers">Programa los gastos que se repiten periódicamente, puedes programar el día y la frecuencia del pago en meses.</p>
+                </div>
+                <div>
+                    <button class="bg-aquaPers mr-1 w-32 h-7 rounded-[5px] text-[14px] text-white font-bold  md:h-10">Exportar</button>
+                </div>
+            </div>
+            <div class="bg-gray2Pers h-52 rounded-[10px] my-7 flex flex-col pt-16 xl:h-80 xl:pt-32">
+                <div class="text-center text-whiteSomke2 mb-8 xl:mb-20">
+                    <p>¡Todavía no has registrado tus pagos recurrentes!.</p>
+                    <button class="bg-white mt-2 w-32 h-12 rounded-[5px] 
+                    text-[14px] text-black font-bold  md:h-10 ">Agregar pagos</button>
+                </div>
+                <div class="pt-1 px-4 text-gray-300 border-t border-t-gray-500 flex justify-between">
+                    <div class="text-[12px]">
+                        <button>Reinciar</button>
+                    </div>
+                    <div class="text-[12px]">
+                        <span class="border-r border-r-gray-500">Mostrando 1-1 De 1</span>
+                        <button>Agregar pagina</button>
+                    </div>
+                </div>
+            </div>
+            <div class="flex justify-end">
+                <button class="mx-7 bg-aquaPers w-32 h-7 rounded-[5px] text-[14px] text-white font-bold  md:h-10">Vista previa</button>
+                <button class="bg-gray2Pers mr-1 w-32 h-7 rounded-[5px] text-[14px] text-white font-bold  md:h-10">Guardar</button>
+            </div>
+        </div>
+    </main>
+    <script src="../JS/utils/drop.js"></script>
+</body>
+</html>

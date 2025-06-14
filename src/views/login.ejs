@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="icon" href="../Fonts/DIY String Art ~ Fun & Easy Craft ~Nifty Thrifty DIYer.jpg" type="image/png">
+    <meta name="google-signin-client_id" content="1051016192481-781a6nmop6gjbvsje746p0021ntoihvt.apps.googleusercontent.com">
+    <link rel="stylesheet" href="/output.css">
+    <link rel="stylesheet" href="/fontawesome-free-5.15.4-web/css/all.min.css">
+    <title>Sign in</title>
+</head>
+<body class="m-0 p-0 font-cam">
+    <div class="flex justify-center items-center bg-gray-100 p-0 w-full">
+        <div class="bg-gray-900 flex justify-center items-center h-screen w-full">
+            <div class="w-1/2 h-screen hidden lg:block">
+                <img src="../Fonts/top-viewtop-view-manager-employee-doing-teamwork-business-office-looking-charts-laptop-display.jpg" alt="Placeholder Image" class="object-cover w-full h-full">
+            </div>
+            <div class="lg:p-24 md:p-32 sm:16 p-4 w-full lg:w-1/2">
+                <div class="flex justify-center items-center relative h-[100px]">
+                    <img src="../Fonts/logoempty.png" alt="" class="w-[150px] absolute left-[75px]">
+                    <h1 class="md:font-bold text-3xl font-semibold text-white absolute bottom-[45px]">Cash <span class="text-aquaPers">Admin</span></h1>
+                </div>
+                <h1 class="text-2xl font-semibold mb-4 text-gray-200">Login</h1>
+                <form action="/login/user" method="POST">
+                    <div class="mb-4">
+                        <label for="username" class="block text-gray-200">Username</label>
+                        <input type="text" id="username" name="Nombre_usuario" class="text-black bg-whiteSmoke w-full border border-gray-300 rounded-md py-2 px-3 focus:outline-none focus:border-blue-500" autocomplete="off">
+                    </div>
+                    <div class="mb-4">
+                        <label for="password" class="block text-gray-200">Password</label>
+                        <input type="password" id="password" name="Passwrd" class="text-black bg-whiteSmoke w-full border border-gray-300 rounded-md py-2 px-3 focus:outline-none focus:border-blue-500" autocomplete="off">
+                    </div>
+                    <div class="flex justify-center">
+                        <% if(error) {%>
+                            <span class="text-red-700 text-center w-full text-[16px]">
+                                <%= error  %>
+                            </span>
+                        <% } %>
+                    </div>
+                    <!-- Remember Me Checkbox -->
+                    <div class="mb-4 flex items-center">
+                        <input type="checkbox" id="checkbox" class="text-red-500">
+                        <label for="remember" class="text-white ml-2">Show password</label>
+                    </div>
+                    <!-- Forgot Password Link -->
+                    <div class="mb-6 text-blue-500">
+                        <a href="#" class="hover:underline text-white">Forgot Password?</a>
+                    </div>
+                    <!-- <div class="g-signin2" data-onsuccess="onSignIn"></div> -->
+                    <!-- Login Button -->
+                    <button type="submit" class="bg-aquaPers text-white font-semibold rounded-md py-2 px-4 w-full text-center">Login</button>
+                </form>
+                <div class="mt-4 text-green-500 text-center flex flex-col align-middle justify-center">
+                    <!-- <button type="" data-onsuccess="onSignIn" class="g-signin2 flex text-white xL:w-1/2 w-[300px] font-semibold rounded-md py-2 px-[67px] text-center mr-[300px] relative xl:left-[158px] md:left-[220px] mb-2 left-[140px]" >
+                        Join with google 
+                        <i class="fab fa-google text-white mt-[7px] ml-2"></i>
+                    </button> -->
+                    <!-- <-- <div class="g-signin2" data-onsuccess="onSignIn"></div> -->
+
+
+                    <a href="/ingresa" class="hover:underline text-aquaPers text-center">Sign up Here</a>
+
+                </div>
+            </div>
+        </div>
+    </div>
+    <script src="https://apis.google.com/js/platform.js" async defer></script>
+    <script type="module" src="../JS/login.js"></script>
+    
+</body>
+</html>
