@@ -43,12 +43,12 @@ app.use(express.urlencoded({extended: true}));
 app.use(cookieParser())
 
 // Database conncetion
-app.use(myconnection(mysql, {
-    host: process.env.HOST,
-    user: process.env.USER,
-    password: process.env.PASSWORD,
-    database: process.env.DATABASE
-}, 'single'));
+// app.use(myconnection(mysql, {
+//     host: process.env.HOST,
+//     user: process.env.USER,
+//     password: process.env.PASSWORD,
+//     database: process.env.DATABASE
+// }, 'single'));
 
 // user cookie  
 app.use(session({
