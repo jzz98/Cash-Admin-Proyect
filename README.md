@@ -1,7 +1,7 @@
 # Cash Admin Proyect
 #### Cash Admin is my freshman year school proyect, back then i didn't have much experience, but i did my best.
 #### What is Cash Admin?
-#### Cash Admin is a web app for electronic billing
+#### Cash Admin is a web app for electronic billing using AI
 
 ---
 
